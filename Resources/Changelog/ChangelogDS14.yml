@@ -1978,3 +1978,10 @@ Entries:
     message: Блоб в режиме "Выживание".
   - type: Fix
     message: Ошибка с приёмом патрон у МК-57.
+- id: 184
+  author: RIP6100
+  time: '2026-05-25T15:39:58.487655+00:00'
+  pr: 1496
+  changes:
+  - type: Fix
+    message: Баги на карте Box и Omega были уничтожены. by Amaliz_ForTheMore
