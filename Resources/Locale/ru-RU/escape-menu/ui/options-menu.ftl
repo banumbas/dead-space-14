@@ -406,4 +406,5 @@ ui-options-overlay-ghost-hide-distance = Диапазон скрытия нал�
 
 ui-options-save-button = Сохранить
 ui-options-function-open-language-menu = Открыть меню выбора языка
+ui-options-function-use-world-target-action = Использовать способность по кнопке
 ##DS14-end
