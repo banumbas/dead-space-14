@@ -36,6 +36,8 @@
             - FlyingMobMask
           layer:
             - FlyingMobLayer
+    - type: Puller
+      needsHands: false
 
 - type: entity
   parent: BaseSunriseHoloparasiteGuardian
