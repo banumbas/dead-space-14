@@ -2503,3 +2503,12 @@ Entries:
   changes:
   - type: Tweak
     message: Теперь борги не могут произнести нулевой закон.
+- id: 245
+  author: CyberBobeks
+  time: '2026-06-03T08:51:49.934008+00:00'
+  pr: 1591
+  changes:
+  - type: Tweak
+    message: Логика работы системы метаболизма.
+  - type: Fix
+    message: Информация о раунде в Discord-логах.
