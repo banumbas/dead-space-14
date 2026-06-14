@@ -3266,3 +3266,10 @@ Entries:
   - type: Fix
     message: Были исправлены баги на картах Box, Omega и Train by Amaliz. Исправлены
       незначительные баги в прототипах, спрайтах, локализации.
+- id: 323
+  author: RIP6100
+  time: '2026-06-14T18:37:06.484425+00:00'
+  pr: 1730
+  changes:
+  - type: Tweak
+    message: Полный респрайт василиска by Amaliz
