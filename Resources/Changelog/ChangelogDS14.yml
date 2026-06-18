@@ -3556,3 +3556,10 @@ Entries:
   changes:
   - type: Add
     message: новый режим - "предатели УЛЬТРА".
+- id: 354
+  author: zubekkk
+  time: '2026-06-18T09:39:59.964670+00:00'
+  pr: 1775
+  changes:
+  - type: Add
+    message: кандалы и коробка для кандалов (содержит в себе 6 штук).
