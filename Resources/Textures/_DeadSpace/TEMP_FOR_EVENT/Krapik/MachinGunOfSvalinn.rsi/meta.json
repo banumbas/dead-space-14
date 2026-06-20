@@ -11,17 +11,7 @@
             "name": "icon"
         },
         {
-            "name": "base",
-            "directions": 4,
-            "delays": [
-                [
-                    0.3,
-                    0.3,
-                    0.3,
-                    0.3,
-                    0.3
-                ]
-            ]
+            "name": "base"
         },
         {
             "name": "inhand-left",
