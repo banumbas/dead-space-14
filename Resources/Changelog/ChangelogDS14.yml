@@ -4150,3 +4150,10 @@ Entries:
     message: Респрайт постеров "Нт лого" и "СБ видит".
   - type: Fix
     message: Баги на карте Box. by Amaliz.
+- id: 410
+  author: HavvaMariajmiPalmer
+  time: '2026-07-02T22:46:47.747498+00:00'
+  pr: 1879
+  changes:
+  - type: Add
+    message: секретный скаф кма в ящик кма
