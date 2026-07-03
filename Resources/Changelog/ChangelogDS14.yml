@@ -4171,3 +4171,10 @@ Entries:
   changes:
   - type: Add
     message: Поддержка скейлинга у компонента "marking" (by sastr.).
+- id: 413
+  author: CyberBobeks
+  time: '2026-07-03T22:56:28.676208+00:00'
+  pr: 1890
+  changes:
+  - type: Fix
+    message: Невозможность атаковать в лежачем состоянии.
