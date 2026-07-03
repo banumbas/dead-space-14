@@ -4164,3 +4164,10 @@ Entries:
   changes:
   - type: Tweak
     message: Дворфы теперь говорят названия профессий и рас в их стиле
+- id: 412
+  author: CyberBobeks
+  time: '2026-07-03T19:41:26.383059+00:00'
+  pr: 1889
+  changes:
+  - type: Add
+    message: Поддержка скейлинга у компонента "marking" (by sastr.).
