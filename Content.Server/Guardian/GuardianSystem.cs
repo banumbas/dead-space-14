@@ -23,7 +23,7 @@ namespace Content.Server.Guardian
     /// <summary>
     /// A guardian has a host it's attached to that it fights for. A fighting spirit.
     /// </summary>
-    // Sunrise-Edit
+    // DS14-Edit
     public sealed partial class GuardianSystem : EntitySystem
     {
         [Dependency] private readonly SharedDoAfterSystem _doAfterSystem = default!;
@@ -143,7 +143,7 @@ namespace Content.Server.Guardian
             if (args.Cancelled)
                 return;
 
-            if (!CanAttemptGuardianAttack(uid, component, args) || args.Target != component.Host || CanAttackHost(uid)) // Sunrise-Edit
+            if (!CanAttemptGuardianAttack(uid, component, args) || args.Target != component.Host || CanAttackHost(uid)) // DS14-Edit
                 return;
 
             // why is this server side code? This should be in shared
@@ -161,11 +161,11 @@ namespace Content.Server.Guardian
             args.Args.Cancelled = true;
         }
 
-        // Sunrise edit start
+        // deadspace edit start
         private partial bool CanAttackHost(EntityUid uid);
 
         private partial bool CanAttemptGuardianAttack(EntityUid uid, GuardianComponent component, AttackAttemptEvent args);
-        // Sunrise edit end
+        // deadspace edit end
 
         public void ToggleGuardian(EntityUid user, GuardianHostComponent hostComponent)
         {
@@ -249,7 +249,7 @@ namespace Content.Server.Guardian
             if (TryComp<GuardianComponent>(guardian, out var guardianComp))
             {
                 guardianComp.Host = args.Args.Target.Value;
-                OnGuardianLooseChanged(guardian, guardianComp); // Sunrise-Edit
+                OnGuardianLooseChanged(guardian, guardianComp); // DS14-Edit
                 _audio.PlayPvs(guardianComp.InjectSound, args.Args.Target.Value);
                 _popupSystem.PopupEntity(Loc.GetString("guardian-created"), args.Args.Target.Value, args.Args.Target.Value);
                 // Exhaust the activator
@@ -381,7 +381,7 @@ namespace Content.Server.Guardian
 
             guardianComponent.GuardianLoose = true;
 
-            OnGuardianLooseChanged(guardian, guardianComponent); // Sunrise-Edit
+            OnGuardianLooseChanged(guardian, guardianComponent); // DS14s-Edit
         }
 
         private void RetractGuardian(EntityUid host,GuardianHostComponent hostComponent, EntityUid guardian, GuardianComponent guardianComponent)
@@ -397,11 +397,9 @@ namespace Content.Server.Guardian
             _popupSystem.PopupEntity(Loc.GetString("guardian-entity-recall"), host);
             guardianComponent.GuardianLoose = false;
 
-            OnGuardianLooseChanged(guardian, guardianComponent); // Sunrise-Edit
+            OnGuardianLooseChanged(guardian, guardianComponent); // DS14-Edit
         }
 
-        // Sunrise edit start
-        partial void OnGuardianLooseChanged(EntityUid guardian, GuardianComponent guardianComponent);
-        // Sunrise edit end
+        partial void OnGuardianLooseChanged(EntityUid guardian, GuardianComponent guardianComponent); // deadspace
     }
 }
