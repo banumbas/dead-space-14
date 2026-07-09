@@ -33,10 +33,4 @@ public sealed partial class GuardianChaosAttractComponent : Component
     /// </summary>
     [DataField]
     public CollisionGroup CollisionMask = CollisionGroup.GhostImpassable;
-
-    /// <summary>
-    /// Visual effect spawned when the pulse triggers.
-    /// </summary>
-    [DataField]
-    public EntProtoId Effect = "RMCExplosionEffectGrenadeShockWave";
 }

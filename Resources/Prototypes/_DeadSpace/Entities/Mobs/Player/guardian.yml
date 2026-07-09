@@ -101,11 +101,15 @@
       types:
         Blunt: 30
         Poison: 5
-  - type: InjectOnHit
-    limit: 5
-    reagents:
-      - ReagentId: Toxin
-        Quantity: 5
+  - type: SolutionContainerManager
+    solutions:
+      melee:
+        reagents:
+        - ReagentId: Toxin
+          Quantity: 12
+  - type: MeleeChemicalInjector
+    solution: melee
+    transferAmount: 6
 
 - type: entity
   parent: BaseStrainsHoloparasiteGuardian
@@ -174,11 +178,9 @@
     stunAmount: 0.5
     knockdownAmount: 2
     drop: false
-  - type: JumpSkill
-    actionJumpId: ActionGuardianCharge
-    throwSpeed: 13
-    throwRange: 8
-    maxThrow: 8
+  - type: JumpAbility
+    action: ActionGuardianCharge
+    jumpThrowSpeed: 13
   - type: WorldTargetActionKeybind
     action: ActionGuardianCharge
   - type: MeleeWeapon

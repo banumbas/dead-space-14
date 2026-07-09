@@ -48,7 +48,6 @@ public sealed class GuardianChaosAttractSystem : EntitySystem
             return false;
 
         var coordinates = _transform.GetMapCoordinates(ent.Owner);
-        Spawn(ent.Comp.Effect, coordinates);
 
         var host = _guardianQuery.TryComp(ent.Owner, out var guardian)
             ? guardian.Host
