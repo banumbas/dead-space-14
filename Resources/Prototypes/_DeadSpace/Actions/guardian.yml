@@ -2,12 +2,18 @@
   parent: BaseAction
   id: ActionGuardianCharge
   name: guardian charge
-  description: Leap in the selected direction.
+  description: Leap to the selected point.
   categories: [ HideSpawnMenu ]
   components:
   - type: Action
-    useDelay: 4
+    useDelay: 5
     priority: 2
+    icon:
+      sprite: Interface/Actions/actions_mecha.rsi
+      state: mech_savannah
+    itemIconStyle: NoItem
+  - type: InstantAction
+    event: !type:GravityJumpEvent {}
 
 - type: entity
   parent: BaseAction

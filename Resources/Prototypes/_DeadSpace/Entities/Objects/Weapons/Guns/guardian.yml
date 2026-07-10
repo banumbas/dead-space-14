@@ -40,7 +40,7 @@
   name: holoparasite medical projector
   components:
   - type: RechargeBasicEntityAmmo
-    rechargeCooldown: 2
+    rechargeCooldown: 6
   - type: BasicEntityAmmoProvider
     proto: ProjectileGuardianHealingBolt
     capacity: 1

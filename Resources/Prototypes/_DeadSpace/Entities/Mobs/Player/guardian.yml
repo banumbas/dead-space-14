@@ -106,10 +106,16 @@
       melee:
         reagents:
         - ReagentId: Toxin
-          Quantity: 12
+          Quantity: 8
+  - type: SolutionRegeneration
+    solution: melee
+    generated:
+      reagents:
+      - ReagentId: Toxin
+        Quantity: 0.4
   - type: MeleeChemicalInjector
     solution: melee
-    transferAmount: 6
+    transferAmount: 4
 
 - type: entity
   parent: BaseStrainsHoloparasiteGuardian
@@ -179,9 +185,6 @@
     knockdownAmount: 2
     drop: false
   - type: JumpAbility
-    action: ActionGuardianCharge
-    jumpThrowSpeed: 13
-  - type: WorldTargetActionKeybind
     action: ActionGuardianCharge
   - type: MeleeWeapon
     attackRate: 3.6
@@ -362,7 +365,7 @@
     resistanceBypass: true
 
 - type: entity
-  parent: MobHoloparasiteGuardianSupport
+  parent: BaseStrainsHoloparasiteGuardian
   id: MobHoloparasiteGuardianHealer
   name: healer holoparasite
   description: A frail guardian specialized in patching wounds instead of causing them.
@@ -386,7 +389,7 @@
     attackRate: 1.2
     damage:
       groups:
-        Brute: -17 # Heals approximately 5 brute damage, not 17. Exact value is uncertain, needs verification.
+        Brute: -17 # Heals approximately 5-6 brute damage, not 10. Exact value is uncertain, needs verification.
         Burn: -17
         Airloss: -17
         Toxin: -17
