@@ -1,5 +1,5 @@
 ent-ActionGuardianCharge = рывок стража
-    .desc = Прыгнуть в выбранном направлении.
+    .desc = Прыгнуть вперёд по направлению взгляда.
 ent-ActionGuardianForceWall = силовой барьер
     .desc = Создать магический барьер.
 ent-ActionGuardianRangedShot = твердосветный болт

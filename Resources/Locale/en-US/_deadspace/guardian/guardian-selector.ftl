@@ -47,7 +47,7 @@ guardian-selector-charger-details =
     - Damage transfer: 0.6 to the host.
     - Link range: 10 tiles.
     Charge:
-    - Use the targeted-ability key (default: MMB) to leap toward a selected point. Impact knocks targets down (does NOT disarm).
+    - Use the charge action to leap forward in the direction you are facing. Impact knocks targets down without disarming them.
 
 guardian-selector-lightning-name = Lightning
 guardian-selector-lightning-description = A defensive tesla link that protects the host and burns enemies crossing the arc.

@@ -46,9 +46,9 @@ public sealed class WorldTargetActionKeybindSystem : EntitySystem
     /// <summary>
     ///     Attempts to execute the world-target action bound to <paramref name="ent"/> at the given coordinates.
     ///     Resolves <see cref="WorldTargetActionKeybindComponent"/> on the entity, locates the matching
-    ///     <see cref="WorldTargetActionComponent"/> action via <c>TryGetAction</c>, populates the event with
-    ///     <paramref name="coordinates"/> and an optional <paramref name="target"/>, then performs the action
-    ///     through <see cref="SharedActionsSystem.PerformAction"/>.
+    ///     <see cref="WorldTargetActionComponent"/> action via <c>TryGetAction</c>, then sends it through the
+    ///     standard validated action execution path with <paramref name="coordinates"/> and an optional
+    ///     <paramref name="target"/>.
     /// </summary>
     /// <param name="ent">The entity that owns the keybind component. Component may be <c>null</c>; it will be resolved internally.</param>
     /// <param name="coordinates">World coordinates at which the action should be aimed.</param>
@@ -57,8 +57,8 @@ public sealed class WorldTargetActionKeybindSystem : EntitySystem
     ///     <see cref="EntityTargetActionComponent"/> and the entity is valid and exists.
     /// </param>
     /// <returns>
-    ///     <c>true</c> if the action was located and <see cref="SharedActionsSystem.PerformAction"/> was called;
-    ///     <c>false</c> if the component could not be resolved or no valid action was found.
+    ///     <c>true</c> if the action was located and passed server-side validation;
+    ///     <c>false</c> if the component could not be resolved, no matching action was found, or validation failed.
     /// </returns>
     public bool TryUseWorldTargetAction(
         Entity<WorldTargetActionKeybindComponent?> ent,
@@ -68,28 +68,26 @@ public sealed class WorldTargetActionKeybindSystem : EntitySystem
         if (!Resolve(ent, ref ent.Comp))
             return false;
 
-        if (!TryGetAction(ent, coordinates, out var actionEnt, out var action, out var actionEvent))
+        if (!TryGetAction(ent, out var actionEnt))
             return false;
 
-        actionEvent.Target = coordinates;
-        actionEvent.Entity = HasComp<EntityTargetActionComponent>(actionEnt) && target.IsValid() && Exists(target)
-            ? target
+        NetEntity? entityTarget = HasComp<EntityTargetActionComponent>(actionEnt) && target.IsValid() && Exists(target)
+            ? GetNetEntity(target)
             : null;
 
-        _actions.PerformAction(ent.Owner, (actionEnt, action), actionEvent, predicted: false);
-        return true;
+        var request = new RequestPerformActionEvent(
+            GetNetEntity(actionEnt),
+            entityTarget,
+            GetNetCoordinates(coordinates));
+
+        return _actions.TryPerformAction(request, ent.Owner);
     }
 
     private bool TryGetAction(
         Entity<WorldTargetActionKeybindComponent?> ent,
-        EntityCoordinates coordinates,
-        out EntityUid actionEnt,
-        out ActionComponent action,
-        out WorldTargetActionEvent actionEvent)
+        out EntityUid actionEnt)
     {
         actionEnt = default;
-        action = default!;
-        actionEvent = default!;
 
         if (!Resolve(ent, ref ent.Comp))
             return false;
@@ -103,24 +101,10 @@ public sealed class WorldTargetActionKeybindSystem : EntitySystem
             if (prototype is null || prototype.ID != ent.Comp.Action.Id)
                 continue;
 
-            if (!TryComp<ActionComponent>(candidate, out var actionComp))
-                return false;
-
-            if (!TryComp<WorldTargetActionComponent>(candidate, out var worldTarget))
-                return false;
-
-            if (!_actions.ValidAction((candidate, actionComp)))
-                return false;
-
-            if (!_actions.ValidateWorldTarget(ent.Owner, coordinates, (candidate, worldTarget)))
-                return false;
-
-            if (_actions.GetEvent(candidate) is not WorldTargetActionEvent worldEvent)
+            if (!HasComp<WorldTargetActionComponent>(candidate))
                 return false;
 
             actionEnt = candidate;
-            action = actionComp;
-            actionEvent = worldEvent;
             return true;
         }
 

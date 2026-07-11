@@ -1,5 +1,5 @@
 ent-ActionGuardianCharge = guardian charge
-    .desc = Leap in the selected direction.
+    .desc = Leap forward in the direction you are facing.
 ent-ActionGuardianForceWall = forcewall
     .desc = Creates a magical barrier.
 ent-ActionGuardianRangedShot = hard-light bolt
