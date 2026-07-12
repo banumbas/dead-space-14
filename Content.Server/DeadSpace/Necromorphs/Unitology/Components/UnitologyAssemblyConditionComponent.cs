@@ -2,12 +2,9 @@
 
 namespace Content.Server.DeadSpace.Necromorphs.Unitology.Components;
 
-[RegisterComponent, Access(typeof(UnitologySubmissionConditionSystem))]
-public sealed partial class UnitologySubmissionConditionComponent : Component
+[RegisterComponent, Access(typeof(UnitologyAssemblyConditionSystem))]
+public sealed partial class UnitologyAssemblyConditionComponent : Component
 {
-    [ViewVariables(VVAccess.ReadOnly)]
-    public int Target;
-
-    [ViewVariables(VVAccess.ReadOnly)]
-    public float Progress = 0;
+    [DataField]
+    public float Range = 3f;
 }
