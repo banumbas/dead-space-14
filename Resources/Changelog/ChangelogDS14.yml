@@ -4530,3 +4530,10 @@ Entries:
   changes:
   - type: Tweak
     message: Сноубол убрана с мапппула, а Гемини вернулся.
+- id: 451
+  author: IvanKuvalda
+  time: '2026-07-12T10:21:25.637417+00:00'
+  pr: 1942
+  changes:
+  - type: Add
+    message: Добавлен рефлект в 15% одноручным клинкам богомола
