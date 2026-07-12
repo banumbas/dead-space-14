@@ -78,7 +78,6 @@
       allowedStates:
         - Alive
     - type: CombatMode
-
     #- type: Internals # ds14
     # DS14-start
     - type: ZombieImmune
