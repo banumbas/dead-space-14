@@ -1,5 +1,6 @@
 using Content.Server.Popups;
 using Content.Shared.Actions;
+using Content.Shared.Damage;
 using Content.Shared.Damage.Systems;
 using Content.Shared.DoAfter;
 using Content.Shared.Examine;
@@ -299,9 +300,12 @@ namespace Content.Server.Guardian
             if (args.DamageDelta == null || component.Host == null || component.DamageShare == 0)
                 return;
 
+            var hostDamage = new DamageSpecifier();
+            hostDamage.DamageDict.Add("Blunt", args.DamageDelta.GetTotal() * component.DamageShare);
+
             _damageSystem.ChangeDamage(
                 component.Host.Value,
-                args.DamageDelta * component.DamageShare,
+                hostDamage,
                 origin: args.Origin,
                 ignoreResistances: true,
                 interruptsDoAfters: false);
