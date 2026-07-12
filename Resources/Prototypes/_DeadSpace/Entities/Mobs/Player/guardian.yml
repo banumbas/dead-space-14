@@ -294,7 +294,7 @@
       color: "#f2d15b"
       shader: unshaded
   - type: Guardian
-    damageShare: 0.65
+    damageShare: 0.67
     distanceAllowed: 10
   - type: Body
     prototype: Primate
