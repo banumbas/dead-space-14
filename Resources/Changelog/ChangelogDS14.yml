@@ -4523,3 +4523,10 @@ Entries:
   changes:
   - type: Add
     message: Демонам добавлен структурный урон.
+- id: 450
+  author: TheZuTi
+  time: '2026-07-12T09:05:53.845037+00:00'
+  pr: 1938
+  changes:
+  - type: Tweak
+    message: Сноубол убрана с мапппула, а Гемини вернулся.
