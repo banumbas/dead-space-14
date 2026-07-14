@@ -259,7 +259,7 @@
     id: VisitorPDA
     belt: ClothingBeltSecurityWebbingFilled
     back: ClothingBackpackSecurity
-    ears: ClothingHeadsetAltSecurityOfficer # ds14  
+    ears: ClothingHeadsetAltSecurityOfficer # ds14
     eyes: ClothingEyesGlassesSecurity
     outerClothing: ClothingOuterVestArmorSec # DS14
     pocket1: WeaponPistolMk58

@@ -1,12 +1,13 @@
+// Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
+
 using Robust.Shared.GameStates;
 using Content.Shared.Trigger.Components.Effects;
 
-namespace Content.Shared._DeadSpace.Flashbang;
+namespace Content.Shared.DeadSpace.Flashbang;
 
 [RegisterComponent, NetworkedComponent, AutoGenerateComponentState]
 public sealed partial class FlashbangComponent : BaseXOnTriggerComponent
 {
-
     [DataField]
     public float KnockdownRange = 6f;
 

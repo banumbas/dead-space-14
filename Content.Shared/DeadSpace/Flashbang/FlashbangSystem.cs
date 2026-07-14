@@ -1,3 +1,5 @@
+// Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
+
 using Content.Shared.Flash;
 using Content.Shared.Flash.Components;
 using Content.Shared.Interaction.Events;
@@ -15,7 +17,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Random;
 using Robust.Shared.Timing;
 
-namespace Content.Shared._DeadSpace.Flashbang;
+namespace Content.Shared.DeadSpace.Flashbang;
 
 public sealed class FlashbangSystem : XOnTriggerSystem<FlashbangComponent>
 {
