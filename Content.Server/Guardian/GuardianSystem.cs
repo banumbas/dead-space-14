@@ -18,6 +18,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
+using Content.Shared._DeadSpace.Auras; // DS14
 
 namespace Content.Server.Guardian
 {
@@ -252,8 +253,16 @@ namespace Content.Server.Guardian
             {
                 guardianComp.Host = args.Args.Target.Value;
 
-                OnGuardianCreated(guardian, args.Args.Target.Value); // DS14
-                OnGuardianLooseChanged(guardian, guardianComp); // DS14-Edit
+                // DS14-start
+                if (TryComp<AuraComponent>(guardian, out var aura))
+                {
+                    aura.IgnoredEntity = GetNetEntity(args.Args.Target.Value);
+                    Dirty(guardian, aura); // я хуею с визденов ПРОСТО почему гуардин система не предикт столько мусор кода добавляю из-заэтого
+                }
+
+                OnGuardianCreated(guardian, args.Args.Target.Value);
+                OnGuardianLooseChanged(guardian, guardianComp);
+                // DS14-end
                 _audio.PlayPvs(guardianComp.InjectSound, args.Args.Target.Value);
                 _popupSystem.PopupEntity(Loc.GetString("guardian-created"), args.Args.Target.Value, args.Args.Target.Value);
                 // Exhaust the activator

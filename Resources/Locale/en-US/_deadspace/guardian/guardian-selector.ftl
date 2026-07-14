@@ -14,6 +14,8 @@ guardian-selector-standard-details =
     - Link range: 10 tiles.
     Battle cry:
     - Automatically shouts a custom cry while punching. Default: ORA. Maximum length: 8 characters.
+    Fear aura:
+    - All enemies within a 2-tile radius are significantly slowed.
 
 guardian-selector-assassin-name = Assassin
 guardian-selector-assassin-description = Stealthy movement, high melee damage, and full damage transfer to the host.

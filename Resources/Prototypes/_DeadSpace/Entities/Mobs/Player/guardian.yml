@@ -58,6 +58,12 @@
   - type: Guardian
     damageShare: 0.4
     distanceAllowed: 10
+  - type: Aura
+    range: 2
+    visualEffectPrototype: AuraVisualRedParticles
+  - type: AuraSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
   - type: MeleeWeapon
     attackRate: 1.5
     damage:
