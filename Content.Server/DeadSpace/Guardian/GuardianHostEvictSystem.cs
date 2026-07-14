@@ -72,8 +72,16 @@ public sealed class GuardianHostEvictSystem : EntitySystem
             return false;
         }
 
+        // Removing this before the mind transfer prevents GhostRoleSystem from reopening the same body for takeover.
+        var restoreTakeover = HasComp<GhostTakeoverAvailableComponent>(guardian);
+        if (restoreTakeover)
+            RemComp<GhostTakeoverAvailableComponent>(guardian);
+
         if (!_ghost.OnGhostAttempt(mindId, true, viaCommand: true, forced: true, mind: mind))
         {
+            if (restoreTakeover)
+                EnsureComp<GhostTakeoverAvailableComponent>(guardian);
+
             _popup.PopupEntity(Loc.GetString("guardian-evict-failed"), ent.Owner, ent.Owner, PopupType.SmallCaution);
             return false;
         }
