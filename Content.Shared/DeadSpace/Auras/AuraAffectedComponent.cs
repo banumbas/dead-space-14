@@ -1,6 +1,8 @@
+// Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
+
 using Robust.Shared.GameStates;
 
-namespace Content.Shared._DeadSpace.Auras;
+namespace Content.Shared.DeadSpace.Auras;
 
 /// <summary>
 /// Added dynamically by AuraSystem when an entity overlaps with one or more auras.

@@ -1,14 +1,14 @@
-using Content.Shared.Movement.Systems;
-using Content.Shared.Movement.Components;
-using Robust.Shared.Physics.Components;
-using Robust.Shared.Timing;
-using Robust.Shared.Network;
-using Robust.Shared.Containers;
-using System.Linq;
+// Мёртвый Космос, Licensed under custom terms with restrictions on public hosting and commercial use, full text: https://raw.githubusercontent.com/dead-space-server/space-station-14-fobos/master/LICENSE.TXT
+
 using System.Collections.Generic;
 using Content.Shared.Mobs.Components;
+using Content.Shared.Movement.Components;
+using Content.Shared.Movement.Systems;
+using Robust.Shared.Containers;
+using Robust.Shared.Network;
+using Robust.Shared.Physics.Components;
 
-namespace Content.Shared._DeadSpace.Auras;
+namespace Content.Shared.DeadSpace.Auras;
 
 public sealed class AuraSystem : EntitySystem
 {
@@ -16,14 +16,16 @@ public sealed class AuraSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
+    [Dependency] private readonly INetManager _net = default!;
 
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _currentOverlaps = new();
     private readonly HashSet<EntityUid> _inRangeBuffer = new();
+    private readonly List<EntityUid> _staleOverlapBuffer = new();
 
     public override void Initialize()
     {
         base.Initialize();
-        
+
         SubscribeLocalEvent<MovementSpeedModifierComponent, RefreshMovementSpeedModifiersEvent>(OnRefreshSpeed);
         SubscribeLocalEvent<AuraAffectedComponent, ComponentShutdown>(OnAffectedShutdown);
     }
@@ -74,30 +76,43 @@ public sealed class AuraSystem : EntitySystem
             {
                 affected.ActiveAuras.Clear();
                 foreach (var a in newAuras) affected.ActiveAuras.Add(a);
-                    
+
                 Dirty(ent, affected);
                 HandleVisuals(ent, affected, newAuras);
                 _movementSpeed.RefreshMovementSpeedModifiers(ent);
             }
         }
 
+        _staleOverlapBuffer.Clear();
         foreach (var (ent, auras) in _currentOverlaps)
         {
-            if (auras.Count == 0 || HasComp<AuraAffectedComponent>(ent))
+            if (auras.Count == 0 || TerminatingOrDeleted(ent))
+            {
+                _staleOverlapBuffer.Add(ent);
+                continue;
+            }
+
+            if (HasComp<AuraAffectedComponent>(ent))
                 continue;
 
             var affected = EnsureComp<AuraAffectedComponent>(ent);
             affected.ActiveAuras.Clear();
             foreach (var a in auras) affected.ActiveAuras.Add(a);
-                
+
             Dirty(ent, affected);
             HandleVisuals(ent, affected, auras);
             _movementSpeed.RefreshMovementSpeedModifiers(ent);
         }
+
+        foreach (var ent in _staleOverlapBuffer)
+            _currentOverlaps.Remove(ent);
     }
 
     private void HandleVisuals(EntityUid ent, AuraAffectedComponent affected, HashSet<EntityUid> auras)
     {
+        if (!_net.IsClient)
+            return;
+
         string? visualProto = null;
         foreach (var auraUid in auras)
         {
@@ -113,13 +128,11 @@ public sealed class AuraSystem : EntitySystem
             var visual = Spawn(visualProto, Transform(ent).Coordinates);
             _transform.SetParent(visual, ent);
             affected.VisualEntity = visual;
-            Dirty(ent, affected);
         }
         else if (visualProto == null && affected.VisualEntity != null)
         {
             QueueDel(affected.VisualEntity.Value);
             affected.VisualEntity = null;
-            Dirty(ent, affected);
         }
     }
 

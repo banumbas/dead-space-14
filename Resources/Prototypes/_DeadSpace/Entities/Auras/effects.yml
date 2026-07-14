@@ -1,6 +1,6 @@
 - type: entity
   id: AuraVisualRedParticles
-  noSpawn: true
+  categories: [ HideSpawnMenu ]
   name: red particles
   components:
   - type: Sprite

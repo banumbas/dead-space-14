@@ -18,7 +18,7 @@ using Robust.Shared.Audio.Systems;
 using Robust.Shared.Containers;
 using Robust.Shared.Player;
 using Robust.Shared.Utility;
-using Content.Shared._DeadSpace.Auras; // DS14
+using Content.Shared.DeadSpace.Auras; // DS14
 
 namespace Content.Server.Guardian
 {
@@ -257,7 +257,7 @@ namespace Content.Server.Guardian
                 if (TryComp<AuraComponent>(guardian, out var aura))
                 {
                     aura.IgnoredEntity = GetNetEntity(args.Args.Target.Value);
-                    Dirty(guardian, aura); // я хуею с визденов ПРОСТО почему гуардин система не предикт столько мусор кода добавляю из-заэтого
+                    Dirty(guardian, aura);
                 }
 
                 OnGuardianCreated(guardian, args.Args.Target.Value);

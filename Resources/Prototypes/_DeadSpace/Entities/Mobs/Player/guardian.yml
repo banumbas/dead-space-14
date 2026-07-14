@@ -281,7 +281,7 @@
 
 - type: entity
   parent: [BaseStrainsHoloparasiteGuardian, InventoryBase]
-  id: MobHoloparasiteGuardianDexterous # юзлесс голо
+  id: MobHoloparasiteGuardianDexterous
   name: dexterous holoparasite
   description: A delicate guardian with hands for manipulating equipment.
   components:
