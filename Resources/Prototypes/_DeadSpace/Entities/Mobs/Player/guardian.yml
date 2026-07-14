@@ -58,11 +58,17 @@
   - type: Guardian
     damageShare: 0.4
     distanceAllowed: 10
+  - type: Aura
+    range: 2
+    visualEffectPrototype: AuraVisualRedParticles
+  - type: AuraSpeedModifier
+    walkModifier: 0.5
+    sprintModifier: 0.5
   - type: MeleeWeapon
-    attackRate: 1.8
+    attackRate: 1.5
     damage:
       types:
-        Blunt: 20
+        Blunt: 24
         Structural: 100
     resistanceBypass: true
   - type: MeleeSpeech
@@ -95,7 +101,7 @@
     lastVisibility: 0.35
     minVisibility: -0.8
   - type: StealthOnMove
-    passiveVisibilityRate: -0.3
+    passiveVisibilityRate: -0.44
     movementVisibilityRate: 0.55
   - type: MeleeWeapon
     attackRate: 1.4
@@ -134,11 +140,11 @@
       color: "#ff5a36"
       shader: unshaded
   - type: Guardian
-    damageShare: 0.8
+    damageShare: 0.6
     distanceAllowed: 10
   - type: GuardianChaosAttract
     speed: -15 #Anything above this pushes things too far away from the Wizard
-    range: 5
+    range: 7
     whitelist:
       components:
       - MobMover
@@ -147,9 +153,9 @@
     delay: 10
   - type: UseDelayOnMeleeHit
   - type: IgniteOnMeleeHit
-    fireStacks: 1
+    fireStacks: 2
   - type: MeleeWeapon
-    attackRate: 1.8
+    attackRate: 2
     damage:
       types:
         Heat: 15
@@ -176,12 +182,6 @@
   - type: MovementSpeedModifier
     baseWalkSpeed: 7
     baseSprintSpeed: 9
-  - type: DamageOnHighSpeedImpact
-    damage:
-      types:
-        Blunt: 30
-    soundHit:
-      collection: MetalThud
   - type: StunOnCollide
     stunAmount: 0.5
     knockdownAmount: 2
@@ -189,7 +189,7 @@
     action: ActionGuardianCharge
     collideKnockdown: 0
   - type: MeleeWeapon
-    attackRate: 3.6
+    attackRate: 3
     damage:
       types:
         Blunt: 15
@@ -211,14 +211,14 @@
       color: "#55e5ff"
       shader: unshaded
   - type: Guardian
-    damageShare: 0.6
-    distanceAllowed: 7
+    damageShare: 0.5
+    distanceAllowed: 8
   - type: GuardianLightningArc
   - type: MeleeWeapon
     attackRate: 1.8
     damage:
       types:
-        Shock: 14
+        Shock: 18
         Structural: 20
 
 - type: entity
@@ -236,16 +236,16 @@
       color: "#5ee06f"
       shader: unshaded
   - type: Guardian
-    damageShare: 0.4
+    damageShare: 0.3
     distanceAllowed: 15
   - type: ActionGrant
     actions:
     - ActionGuardianForceWall
   - type: MeleeWeapon
-    attackRate: 1.6
+    attackRate: 1.2
     damage:
       types:
-        Blunt: 15
+        Blunt: 20
         Structural: 20
     resistanceBypass: true
 
@@ -272,7 +272,7 @@
   - type: WorldTargetActionKeybind
     action: ActionGuardianRangedShot
   - type: MeleeWeapon
-    attackRate: 1.8
+    attackRate: 2
     damage:
       types:
         Blunt: 10
@@ -294,8 +294,8 @@
       color: "#f2d15b"
       shader: unshaded
   - type: Guardian
-    damageShare: 0.65
-    distanceAllowed: 10
+    damageShare: 0.67
+    distanceAllowed: 12
   - type: Body
     prototype: Primate
   - type: Inventory
@@ -303,7 +303,7 @@
   - type: Hands
   - type: ComplexInteraction
   - type: MeleeWeapon
-    attackRate: 1.8
+    attackRate: 1.4
     damage:
       types:
         Blunt: 10
@@ -328,12 +328,12 @@
   - type: ChangeTemperatureOnMeleeHit
     heat: -50000
   - type: StaminaDamageOnHit
-    damage: 10
+    damage: 25
   - type: MeleeWeapon
-    attackRate: 1.6
+    attackRate: 1.4
     damage:
       types:
-        Cold: 23
+        Cold: 30
         Structural: 20
 
 - type: entity
