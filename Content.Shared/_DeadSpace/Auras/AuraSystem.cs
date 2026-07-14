@@ -3,6 +3,7 @@ using Content.Shared.Movement.Components;
 using Robust.Shared.Physics.Components;
 using Robust.Shared.Timing;
 using Robust.Shared.Network;
+using Robust.Shared.Containers;
 using System.Linq;
 using System.Collections.Generic;
 using Content.Shared.Mobs.Components;
@@ -14,6 +15,7 @@ public sealed class AuraSystem : EntitySystem
     [Dependency] private readonly EntityLookupSystem _lookup = default!;
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
+    [Dependency] private readonly SharedContainerSystem _container = default!;
 
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _currentOverlaps = new();
     private readonly HashSet<EntityUid> _inRangeBuffer = new();
@@ -38,7 +40,7 @@ public sealed class AuraSystem : EntitySystem
         var query = EntityQueryEnumerator<AuraComponent, TransformComponent>();
         while (query.MoveNext(out var auraUid, out var aura, out var xform))
         {
-            if (xform.MapID == Robust.Shared.Map.MapId.Nullspace)
+            if (xform.MapID == Robust.Shared.Map.MapId.Nullspace || _container.IsEntityInContainer(auraUid))
                 continue;
 
             _inRangeBuffer.Clear();
