@@ -4850,3 +4850,12 @@ Entries:
   changes:
   - type: Fix
     message: Каплю блоба отныне невозможно аннилигировать скафандром
+- id: 479
+  author: QRETROJEM
+  time: '2026-07-18T17:01:15.659431+00:00'
+  pr: 1927
+  changes:
+  - type: Add
+    message: Роль вирусолога на карту Plasma.
+  - type: Add
+    message: Карта Plasma вернулась в пул доступных карт.
