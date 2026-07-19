@@ -16,7 +16,7 @@ public sealed partial class GuardianLightningArcComponent : Component
     [DataField]
     public DamageSpecifier Damage = new()
     {
-        DamageDict = { { "Heat", 3 } },
+        DamageDict = { { "Heat", 5 } },
     };
 
     /// <summary>
