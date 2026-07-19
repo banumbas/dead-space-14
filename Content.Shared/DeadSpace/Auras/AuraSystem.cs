@@ -110,9 +110,6 @@ public sealed class AuraSystem : EntitySystem
 
     private void HandleVisuals(EntityUid ent, AuraAffectedComponent affected, HashSet<EntityUid> auras)
     {
-        if (!_net.IsClient)
-            return;
-
         string? visualProto = null;
         foreach (var auraUid in auras)
         {
