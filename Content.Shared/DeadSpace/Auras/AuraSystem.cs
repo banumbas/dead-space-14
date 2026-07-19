@@ -5,7 +5,6 @@ using Content.Shared.Mobs.Components;
 using Content.Shared.Movement.Components;
 using Content.Shared.Movement.Systems;
 using Robust.Shared.Containers;
-using Robust.Shared.Network;
 using Robust.Shared.Physics.Components;
 
 namespace Content.Shared.DeadSpace.Auras;
@@ -16,7 +15,6 @@ public sealed class AuraSystem : EntitySystem
     [Dependency] private readonly MovementSpeedModifierSystem _movementSpeed = default!;
     [Dependency] private readonly SharedTransformSystem _transform = default!;
     [Dependency] private readonly SharedContainerSystem _container = default!;
-    [Dependency] private readonly INetManager _net = default!;
 
     private readonly Dictionary<EntityUid, HashSet<EntityUid>> _currentOverlaps = new();
     private readonly HashSet<EntityUid> _inRangeBuffer = new();
